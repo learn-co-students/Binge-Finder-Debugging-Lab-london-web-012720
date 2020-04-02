@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Episode from './Components/Episode';
+import Episode from './Episode';
 
 class SelectedShowContainer extends Component {
 
@@ -17,13 +17,22 @@ class SelectedShowContainer extends Component {
     }
   }
 
+  // mapEpisodes = () => {
+
+  //   return this.props.episodes.map((e)=>{
+  //     if (e.season == this.state.selectedSeason){
+  //        (<Episode myEpisode={e} key={e.id}/>)
+  //     }
+  //   })
+  // }
+
   mapEpisodes = () => {
-    return this.props.episodes.map((e)=>{
-      if (e.season == this.state.selectedSeason){
-        return (<Episode eachEpisode={e} key={e.id}/>)
-      }
-    })
-  }
+    return this.props.episodes.map(e => {
+    if (e.season == this.state.selectedSeason) {
+    return <Episode myEpisode={e} key={e.id} />;
+    }
+    });
+    };
 
   handleSelectionChange = (e) => {
     this.setState({ selectedSeason: e.target.value })
@@ -45,18 +54,19 @@ class SelectedShowContainer extends Component {
           {this.mapSeasons()}
         </select>
         {this.mapEpisodes()}
+        
       </div>
     );
   }
 
 }
 
-export SelectedShowContainer;
+export default SelectedShowContainer;
 
 
 Array.prototype.unique = function() {
-  var arr = [];
-  for(var i = 0; i < this.length; i++) {
+  let arr = [];
+  for(let i = 0; i < this.length; i++) {
     if(!arr.includes(this[i])) {
         arr.push(this[i]);
     }
